@@ -34,6 +34,11 @@ yarn-error.log*
 .env*
 !.env.example
 
+# AI agent files
+AGENTS.md
+CLAUDE.md
+PROJECT_OUTLINE.md
+
 # vercel
 .vercel
 
