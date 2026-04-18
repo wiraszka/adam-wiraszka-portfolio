@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.1.5] — 2026-04-18
+
+### Added
+
+- Add Jest test suite with tests for Hero, ProjectCard, and ProjectsGrid components
+- Add pytest suite for the FastAPI backend
+- Add GitHub Actions CI workflow with separate frontend and backend jobs
+
 ## [v0.1.3] — 2026-04-18
 
 ### Changed
@@ -27,6 +35,7 @@
 - Add responsive project cards grid with tags, powered by a FastAPI backend
 - Deploy on Vercel using Python serverless functions for the API
 
+[v0.1.5]: https://github.com/wiraszka/adam-wiraszka-portfolio/compare/v0.1.4...v0.1.5
 [v0.1.3]: https://github.com/wiraszka/adam-wiraszka-portfolio/compare/v0.1.2...v0.1.3
 [v0.1.2]: https://github.com/wiraszka/adam-wiraszka-portfolio/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/wiraszka/adam-wiraszka-portfolio/compare/v0.1.0...v0.1.1
