@@ -18,19 +18,23 @@ const mockProjects = [
   },
 ];
 
-type FetchMock = jest.Mock<Promise<Partial<Response>>, [RequestInfo | URL, RequestInit?]>;
+const fetchMock = jest.fn() as jest.MockedFunction<typeof fetch>;
 
 beforeEach(() => {
-  global.fetch = jest.fn() as FetchMock;
+  Object.defineProperty(globalThis, "fetch", {
+    value: fetchMock,
+    writable: true,
+    configurable: true,
+  });
 });
 
 afterEach(() => {
-  jest.resetAllMocks();
+  fetchMock.mockReset();
 });
 
 describe("ProjectsGrid", () => {
   it("shows skeleton loaders while fetching", () => {
-    (global.fetch as FetchMock).mockReturnValue(new Promise(() => {}));
+    fetchMock.mockReturnValue(new Promise<Response>(() => {}));
 
     render(<ProjectsGrid />);
 
@@ -38,10 +42,7 @@ describe("ProjectsGrid", () => {
   });
 
   it("renders project cards after a successful fetch", async () => {
-    (global.fetch as FetchMock).mockResolvedValue({
-      ok: true,
-      json: async () => mockProjects,
-    });
+    fetchMock.mockResolvedValue({ ok: true, json: async () => mockProjects } as Response);
 
     render(<ProjectsGrid />);
 
@@ -52,10 +53,7 @@ describe("ProjectsGrid", () => {
   });
 
   it("shows no projects message when fetch returns an empty array", async () => {
-    (global.fetch as FetchMock).mockResolvedValue({
-      ok: true,
-      json: async () => [],
-    });
+    fetchMock.mockResolvedValue({ ok: true, json: async () => [] } as Response);
 
     render(<ProjectsGrid />);
 
@@ -65,7 +63,7 @@ describe("ProjectsGrid", () => {
   });
 
   it("shows no projects message when fetch fails", async () => {
-    (global.fetch as FetchMock).mockRejectedValue(new Error("Network error"));
+    fetchMock.mockRejectedValue(new Error("Network error"));
 
     render(<ProjectsGrid />);
 
@@ -75,7 +73,7 @@ describe("ProjectsGrid", () => {
   });
 
   it("shows no projects message when response is not ok", async () => {
-    (global.fetch as FetchMock).mockResolvedValue({ ok: false });
+    fetchMock.mockResolvedValue({ ok: false } as Response);
 
     render(<ProjectsGrid />);
 
