@@ -40,6 +40,12 @@ describe("ProjectCard", () => {
     expect(screen.getByRole("link")).toHaveAttribute("target", "_blank");
   });
 
+  it("renders the image area", () => {
+    render(<ProjectCard {...baseProps} />);
+
+    expect(screen.getByTestId("project-image")).toBeInTheDocument();
+  });
+
   it("renders no tags when tags array is empty", () => {
     render(<ProjectCard {...baseProps} tags={[]} />);
 

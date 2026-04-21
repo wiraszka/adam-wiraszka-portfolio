@@ -5,7 +5,9 @@ describe("Hero", () => {
   it("renders the name", () => {
     render(<Hero />);
 
-    expect(screen.getByText("Adam Wiraszka")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /adam wiraszka/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders the profile image", () => {
@@ -19,19 +21,39 @@ describe("Hero", () => {
 
     expect(screen.getByRole("link", { name: /email/i })).toHaveAttribute(
       "href",
-      "mailto:adam.wirasz@gmail.com"
+      "mailto:adam.wirasz@gmail.com",
     );
   });
 
   it("renders the GitHub contact link", () => {
     render(<Hero />);
 
-    expect(screen.getByRole("link", { name: /github/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /github/i })).toHaveAttribute(
+      "href",
+      "https://github.com/wiraszka",
+    );
   });
 
   it("renders the LinkedIn contact link", () => {
     render(<Hero />);
 
     expect(screen.getByRole("link", { name: /linkedin/i })).toBeInTheDocument();
+  });
+
+  it("renders the View Projects button linking to the projects section", () => {
+    render(<Hero />);
+
+    expect(
+      screen.getByRole("link", { name: /view projects/i }),
+    ).toHaveAttribute("href", "#projects");
+  });
+
+  it("renders the resume button linking to the resume PDF", () => {
+    render(<Hero />);
+
+    expect(screen.getByRole("link", { name: /resume/i })).toHaveAttribute(
+      "href",
+      "/resume.pdf",
+    );
   });
 });
