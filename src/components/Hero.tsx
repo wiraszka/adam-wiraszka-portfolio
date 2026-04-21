@@ -1,47 +1,83 @@
+"use client";
+
 import Image from "next/image";
+import { useTypewriter } from "@/hooks/useTypewriter";
+
+const ROLES = ["Software Engineer", "Data Scientist", "Python Developer"];
+
+const SUMMARY =
+  "Software engineer and data scientist with end-to-end experience building data pipelines, analytics tools, and full-stack web applications.";
 
 const CONTACT = {
   email: "adam.wirasz@gmail.com",
-  github: "https://github.com/yourusername",
-  linkedin: "https://linkedin.com/in/yourusername",
+  github: "https://github.com/wiraszka",
+  linkedin: "https://linkedin.com/in/adamwiraszka",
 };
 
 export default function Hero() {
+  const { text } = useTypewriter(ROLES);
+
   return (
-    <section className="flex flex-col items-center text-center py-16">
-      <div className="relative w-40 h-40 rounded-full overflow-hidden ring-4 ring-gray-100 shadow-lg mb-8">
-        <Image src="/profile.svg" alt="Adam Wiraszka" fill className="object-cover" priority />
+    <div className="flex flex-col md:flex-row items-center justify-center gap-16">
+      <div className="max-w-md">
+        <p className="text-stone-400 text-sm mb-2">Hi, I&apos;m</p>
+        <h1 className="text-5xl font-bold text-stone-900 mb-4">Adam Wiraszka.</h1>
+        <div className="h-8 mb-8">
+          <span className="text-xl text-stone-500">{text}</span>
+          <span className="cursor-blink text-stone-400">|</span>
+        </div>
+        <p className="text-stone-500 leading-relaxed mb-8 max-w-md">{SUMMARY}</p>
+        <div className="flex items-center gap-8 mb-8">
+          <a
+            href={`mailto:${CONTACT.email}`}
+            className="text-stone-400 hover:text-stone-700 transition-colors"
+            aria-label="Email"
+          >
+            <EmailIcon />
+          </a>
+          <a
+            href={CONTACT.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-stone-400 hover:text-stone-700 transition-colors"
+            aria-label="GitHub"
+          >
+            <GitHubIcon />
+          </a>
+          <a
+            href={CONTACT.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-stone-400 hover:text-stone-700 transition-colors"
+            aria-label="LinkedIn"
+          >
+            <LinkedInIcon />
+          </a>
+        </div>
+        <div className="flex gap-4">
+          <a
+            href="#projects"
+            className="bg-stone-900 text-white text-sm font-medium rounded-lg px-8 py-4 hover:bg-stone-700 transition-colors"
+          >
+            View Projects →
+          </a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-stone-300 text-stone-600 text-sm font-medium rounded-lg px-8 py-4 hover:border-stone-500 hover:text-stone-800 transition-colors"
+          >
+            Resume ↓
+          </a>
+        </div>
       </div>
-      <h1 className="text-4xl font-bold text-gray-900 mb-2">Adam Wiraszka</h1>
-      <p className="text-lg text-gray-500 mb-8">Software Engineer</p>
-      <div className="flex items-center gap-6">
-        <a
-          href={`mailto:${CONTACT.email}`}
-          className="text-gray-400 hover:text-gray-900 transition-colors"
-          aria-label="Email"
-        >
-          <EmailIcon />
-        </a>
-        <a
-          href={CONTACT.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-400 hover:text-gray-900 transition-colors"
-          aria-label="GitHub"
-        >
-          <GitHubIcon />
-        </a>
-        <a
-          href={CONTACT.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-400 hover:text-gray-900 transition-colors"
-          aria-label="LinkedIn"
-        >
-          <LinkedInIcon />
-        </a>
+
+      <div className="flex-shrink-0">
+        <div className="relative w-48 h-48 rounded-full overflow-hidden">
+          <Image src="/profile.png" alt="Adam Wiraszka" fill className="object-cover" priority />
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
 

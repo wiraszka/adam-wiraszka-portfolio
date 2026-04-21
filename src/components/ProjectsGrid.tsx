@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useFetch } from "@/hooks/useFetch";
 import ProjectCard from "./ProjectCard";
+import SkeletonGrid from "./SkeletonGrid";
 
 interface Project {
   id: number;
@@ -12,33 +13,10 @@ interface Project {
 }
 
 export default function ProjectsGrid() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: projects, loading } = useFetch<Project>("/api/projects");
 
-  useEffect(() => {
-    fetch("/api/projects")
-      .then((res) => (res.ok ? res.json() : []))
-      .then((data) => setProjects(data))
-      .catch(() => setProjects([]))
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[1, 2, 3].map((i) => (
-          <div
-            key={i}
-            className="h-40 rounded-xl border border-gray-100 bg-gray-50 animate-pulse"
-          />
-        ))}
-      </div>
-    );
-  }
-
-  if (projects.length === 0) {
-    return <p className="text-gray-400">No projects found</p>;
-  }
+  if (loading) return <SkeletonGrid />;
+  if (projects.length === 0) return <p className="text-stone-400">No projects found</p>;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
