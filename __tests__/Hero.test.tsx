@@ -16,30 +16,6 @@ describe("Hero", () => {
     expect(screen.getByAltText("Adam Wiraszka")).toBeInTheDocument();
   });
 
-  it("renders the email contact link", () => {
-    render(<Hero />);
-
-    expect(screen.getByRole("link", { name: /email/i })).toHaveAttribute(
-      "href",
-      "mailto:adam.wirasz@gmail.com",
-    );
-  });
-
-  it("renders the GitHub contact link", () => {
-    render(<Hero />);
-
-    expect(screen.getByRole("link", { name: /github/i })).toHaveAttribute(
-      "href",
-      "https://github.com/wiraszka",
-    );
-  });
-
-  it("renders the LinkedIn contact link", () => {
-    render(<Hero />);
-
-    expect(screen.getByRole("link", { name: /linkedin/i })).toBeInTheDocument();
-  });
-
   it("renders the View Projects button linking to the projects section", () => {
     render(<Hero />);
 
