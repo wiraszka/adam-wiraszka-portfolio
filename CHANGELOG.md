@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.2.1] — 2026-04-20
+
+### Added
+
+- Add tech stack icon row to hero section with brand-color hover effect and tooltip labels
+- Move contact icons (email, GitHub, LinkedIn) from hero to footer
+
 ## [v0.2.0] — 2026-04-20
 
 ### Added
@@ -56,6 +63,7 @@
 - Add responsive project cards grid with tags, powered by a FastAPI backend
 - Deploy on Vercel using Python serverless functions for the API
 
+[v0.2.1]: https://github.com/wiraszka/adam-wiraszka-portfolio/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/wiraszka/adam-wiraszka-portfolio/compare/v0.1.5...v0.2.0
 [v0.1.5]: https://github.com/wiraszka/adam-wiraszka-portfolio/compare/v0.1.4...v0.1.5
 [v0.1.3]: https://github.com/wiraszka/adam-wiraszka-portfolio/compare/v0.1.2...v0.1.3
